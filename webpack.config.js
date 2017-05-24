@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: './public/index.html',
@@ -18,20 +20,32 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
     removeRedundantAttributes: true,
     removeScriptTypeAttributes: true,
     removeStyleLinkTypeAttributese: true,
-    useShortDoctype: true
+    useShortDoctype: true,
   }
 })
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.resolve('dist'),
-    filename: 'index_bundle.js'
+    // path: path.resolve('dist'),
+    // filename: 'index_bundle.js',
+    // filename : 'style.css'
+    path: path.join(__dirname, 'build'),
+    filename: 'bundle.js',
   },
-module:{
+  resolve: {
+    extensions: ['.js', '.jsx', '.css'],
+  },
+  module: {
     loaders: [
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+      { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      { test: /\.scss$/, loader: ExtractTextPlugin.extract('css!sass'), },
     ],
-},
-  plugins: [HtmlWebpackPluginConfig]
+
+  },
+  plugins: [
+    new ExtractTextPlugin({ filename: '[name]/styles.css', disable: false, allChunks: true }),
+    HtmlWebpackPluginConfig,
+  ]
 }

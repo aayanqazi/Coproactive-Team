@@ -1,0 +1,26 @@
+* {
+    font-family: Colfax Regular , Roboto ,Helvetica Neue ,Arial,sans-serif;
+}
+
+.main-container {
+    padding-top: 50px; 
+}
+.main-container .title{
+    text-align: center;
+    font-size: 50pt;
+}
+.main-container .quote{
+    text-align: center;
+    font-size: 20px;
+    padding: 20px;
+    color: gray;
+}
+.child-container{
+    margin: 0 auto;
+    width: 60%;
+    padding: inherit;
+}
+.cntrBtn{
+    display: flex;
+    justify-content: center;
+}

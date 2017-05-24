@@ -1,7 +1,9 @@
-import Header from 'components/Header/Header.jsx'
-import Main from 'components/Main/Main.jsx'
+import Header from './Header/Header.jsx'
+import Main from './Main/Main.jsx'
+import App from './App/App.jsx'
 
 export {
     Header,
-    Main
+    Main,
+    App,
 }
